@@ -2,3 +2,4 @@ env/
 
 site.db
 __pycache__/
+.vscode/

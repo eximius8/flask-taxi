@@ -10,10 +10,10 @@ class Driver(db.Model):
     orders = db.relationship('Order', backref='driver', lazy=True)
 
     def create(self):
-       db.session.add(self)
-       db.session.commit()
-       return self
-    
+        db.session.add(self)
+        db.session.commit()
+        return self
+
     def __init__(self, name, car):
         self.name = name
         self.car = car
@@ -30,40 +30,43 @@ class Client(db.Model):
     orders = db.relationship('Order', backref='client', lazy=True)
 
     def create(self):
-       db.session.add(self)
-       db.session.commit()
-       return self
+        db.session.add(self)
+        db.session.commit()
+        return self
 
     def __init__(self, name, is_vip):
         self.name = name
         self.is_vip = is_vip
 
     def __repr__(self):
-        return f'<Client \# {self.id}: {self.name}>'
+        return f'<Client # {self.id}: {self.name}>'
 
 
 class Order(db.Model):
-    
+
     __tablename__ = 'orders'
     id = db.Column(db.Integer, primary_key=True)
     address_from = db.Column(db.String(200), nullable=False)
     address_to = db.Column(db.String(200), nullable=False)
-    client_id = db.Column(db.Integer, db.ForeignKey('clients.id'), nullable=False)
-    driver_id = db.Column(db.Integer, db.ForeignKey('drivers.id'), nullable=False)
-    date_created = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+    client_id = db.Column(db.Integer, db.ForeignKey('clients.id'),
+                          nullable=False)
+    driver_id = db.Column(db.Integer, db.ForeignKey('drivers.id'),
+                          nullable=False)
+    date_created = db.Column(db.DateTime, nullable=False,
+                             default=datetime.datetime.utcnow)
     status = db.Column(db.String(200), nullable=False, default="not_accepted")
 
     def create(self):
-       db.session.add(self)
-       db.session.commit()
-       return self
+        db.session.add(self)
+        db.session.commit()
+        return self
 
     def __init__(self, name, is_vip):
         self.name = name
         self.is_vip = is_vip
 
     def __repr__(self):
-        return f'<Order \# {self.id}>'
+        return f'<Order # {self.id}>'
 
 
 db.create_all()
