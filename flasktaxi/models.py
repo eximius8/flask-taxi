@@ -1,6 +1,7 @@
 import datetime
 from flasktaxi import db
 
+
 class Driver(db.Model):
     __tablename__ = 'drivers'
     id = db.Column(db.Integer, primary_key=True)
@@ -63,3 +64,6 @@ class Order(db.Model):
 
     def __repr__(self):
         return f'<Order \# {self.id}>'
+
+
+db.create_all()
