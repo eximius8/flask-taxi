@@ -1,3 +1,4 @@
+"""Роуты приложения."""
 import json
 from flasktaxi import app, db
 from flasktaxi.models import Client, Driver, Order
@@ -7,6 +8,7 @@ from flask import abort, request
 @app.route('/client', methods=['POST'])
 @app.route('/client/<id>', methods=['GET', 'POST', 'DELETE'])
 def crd_client(id=None):
+    """Создание/получение/удаление данных клиента."""
     if request.method == "GET":
         client = Client.query.get(int(id))
         if client:
@@ -33,6 +35,7 @@ def crd_client(id=None):
 @app.route('/driver', methods=['POST'])
 @app.route('/driver/<id>', methods=['GET', 'POST', 'DELETE'])
 def crd_driver(id=None):
+    """Создание/получение/удаление данных водителя."""
     if request.method == "GET":
         driver = Driver.query.get(int(id))
         if driver:
@@ -59,6 +62,7 @@ def crd_driver(id=None):
 @app.route('/order', methods=['POST'])
 @app.route('/order/<id>', methods=['GET', 'POST', 'PUT'])
 def cru_order(id=None):
+    """Создание/получение/удаление данных заказа."""
     if request.method == "GET":
         order = Order.query.get(int(id))
         if order:
