@@ -13,7 +13,7 @@ class Driver(db.Model):
        db.session.add(self)
        db.session.commit()
        return self
-
+    
     def __init__(self, name, car):
         self.name = name
         self.car = car
